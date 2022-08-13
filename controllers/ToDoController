@@ -1,0 +1,23 @@
+import mongoose from 'mongoose';
+const asyncHandler = require('express-async-handler');
+
+const Todo = require('./models/todoModel');
+
+/**
+ * @desc Creating ToDoItem
+ * @route /api/toDoItem
+ * @access Public
+ */
+exports.createTodoItem = asyncHandler(async (req,res) => {
+    const {toDoItem, active} = req.body
+    const todo = await Todo.create(toDoItem, active);
+    res.status(201).json({
+        success: true,
+        data: todo,
+        message: 'Task has been successfully created'
+        
+    })
+})
+
+
+
