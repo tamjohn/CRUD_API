@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 const connectMongoDB = require('./configuration/mongodb');
+const PORT = process.env.PORT || 8000;
 
 dotenv.config({ path: './env'})
 connectMongoDB()
@@ -15,10 +16,9 @@ app.use(express.json());
 if(process.env.MODE === 'development') {
     app.use(morgan('dev'));
 }
-const PORT = process.env.PORT || 8000;
 
 app.get('/', (req, res) => {
     res.send('CRUD API is running')
 })
 
-app.listen(PORT, console.log(`Server is running on port ${PORT}`.yellow));
+app.listen(PORT, console.log(`Server is running on port ${PORT}`.yellow))
