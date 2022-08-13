@@ -4,6 +4,7 @@ import colors from 'colors';
 import morgan from 'morgan';
 import * as path from 'path';
 import connectMongoDB from './configuration/mongodb.js';
+import ToDoRoute from './routes/ToDoRoute';
 
 const PORT = process.env.PORT || 8000;
 
@@ -16,6 +17,8 @@ app.use(express.json());
 if(process.env.MODE === 'development') {
     app.use(morgan('dev'));
 }
+
+app.use('/api/toDoItem', ToDoRoute)
 
 app.get('/', (req, res) => {
     res.send('CRUD API is running')

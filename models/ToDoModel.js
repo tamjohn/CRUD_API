@@ -7,11 +7,10 @@ const toDoModel = new mongoose.Schema({
     },
     active: {
         type: Boolean,
-        default: false
+        default: true
     },
-    id: {
-        type: Number,
-        default: Math.random() * 1000
+    TimeAdded: {
+        timestamps: true
     }
 })
 
