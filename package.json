@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "API for to-do list",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
@@ -16,7 +17,8 @@
     "express-async-handler": "^1.2.0",
     "mongoose": "^6.5.2",
     "mongose": "^0.0.2-security",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

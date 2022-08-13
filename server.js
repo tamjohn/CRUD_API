@@ -1,10 +1,10 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const colors = require('colors');
-const morgan = require('morgan');
-const path = require('path');
+import express from 'express';
+import dotenv from 'dotenv';
+import colors from 'colors';
+import morgan from 'morgan';
+import * as path from 'path';
+import connectMongoDB from './configuration/mongodb.js';
 
-const connectMongoDB = require('./configuration/mongodb');
 const PORT = process.env.PORT || 8000;
 
 dotenv.config({ path: './env'})

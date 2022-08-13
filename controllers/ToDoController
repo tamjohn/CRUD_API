@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-const asyncHandler = require('express-async-handler');
-
-const Todo = require('./models/todoModel');
+import asyncHandler from 'express-async-handler';
+import Todo from './models/todoModel';
 
 /**
  * @desc Creating ToDoItem
@@ -15,7 +14,6 @@ exports.createTodoItem = asyncHandler(async (req,res) => {
         success: true,
         data: todo,
         message: 'Task has been successfully created'
-        
     })
 })
 
