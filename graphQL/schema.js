@@ -1,4 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
+import { registerUser } from "./mutation.js";
 
 const QueryType = new GraphQLObjectType ({
     name: "QueryType",
@@ -9,7 +10,7 @@ const QueryType = new GraphQLObjectType ({
 const MutationType = new GraphQLObjectType ({
     name: "MutationType",
     description: "Mutations",
-    fields: {}
+    fields: { registerUser }
 })
 
 const schema = new GraphQLSchema ({
