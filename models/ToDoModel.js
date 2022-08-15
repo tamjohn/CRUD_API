@@ -1,19 +1,21 @@
 import mongoose from 'mongoose';
 
-const toDoModel = new mongoose.Schema({
+const toDoModel = new mongoose.Schema(
+{
     ToDo: {
         type: String,
         required: true
     },
     active: {
         type: Boolean,
-        default: true
+        required: true
     },
-    TimeAdded: {
-        timestamps: true
+    priority: {
+        type: String,
+        required: true
     }
-})
+});
 
-const Todo = mongoose.model('Todo', toDoModel)
+const ToDo = mongoose.model('ToDo', toDoModel);
 
-export default Todo;
+export default ToDo;

@@ -4,24 +4,26 @@ import colors from 'colors';
 import morgan from 'morgan';
 import * as path from 'path';
 import connectMongoDB from './configuration/mongodb.js';
-import ToDoRoute from './routes/ToDoRoute';
+import { graphqlHTTP } from 'express-graphql';
+import schema from './graphQL/schema.js';
+
 
 const PORT = process.env.PORT || 8000;
 
 dotenv.config({ path: './env'})
 connectMongoDB()
-
 const app = express();
-app.use(express.json());
-
-if(process.env.MODE === 'development') {
-    app.use(morgan('dev'));
-}
-
-app.use('/api/toDoItem', ToDoRoute)
 
 app.get('/', (req, res) => {
-    res.send('CRUD API is running')
+    res.json('CRUD API is running')
 })
+
+app.use(
+    "/graphql",
+    graphqlHTTP({
+        schema: schema,
+        graphiql: true,
+    })
+)
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`.yellow))
