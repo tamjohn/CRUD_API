@@ -6,6 +6,7 @@ import * as path from 'path';
 import connectMongoDB from './configuration/mongodb.js';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './graphQL/schema.js';
+import createLoginToken from './util/authorization.js';
 
 
 const PORT = process.env.PORT || 8000;
@@ -16,6 +17,13 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.json('CRUD API is running')
+})
+
+app.get('/authtest', (req,res) => {
+    res.json(
+        createLoginToken({
+            username: "john"
+        }))
 })
 
 app.use(
