@@ -11,23 +11,15 @@ import { authenticate } from './middleware/auth.js';
 
 
 const PORT = process.env.PORT || 8000;
-
 dotenv.config({ path: './env'})
+
 connectMongoDB()
 const app = express();
 
 app.use(authenticate)
 
 app.get('/', (req, res) => {
-    console.log(req.verifiedUser)
-    res.json('Go to /graphql')
-})
-
-app.get('/authtest', (req,res) => {
-    res.json(
-        createLoginToken({
-            username: "john"
-        }))
+    res.json({ msg: 'Go to /graphql'})
 })
 
 app.use(

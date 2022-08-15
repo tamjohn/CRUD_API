@@ -1,17 +1,18 @@
-import { GraphQLObjectType } from 'graphql';
+import { GraphQLObjectType, GraphQLID, GraphQLString } from 'graphql';
 import user from '../models/userModel.js';
 import ToDo from '../models/ToDoModel.js';
 
-const UserType = new GraphQLObjectType ({
+export const UserType = new GraphQLObjectType ({
     name: "User",
     description: "User type",
     fields: () => ({
         id: { type: GraphQLID },
         username: { type: GraphQLString },
+        password: { type: GraphQLString },
     }),
 })
 
-const ToDoType = new GraphQLObjectType ({
+export const ToDoType = new GraphQLObjectType ({
     name: "ToDo",
     description: "ToDo type",
     fields: () => ({
