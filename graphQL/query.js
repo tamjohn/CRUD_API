@@ -1,5 +1,6 @@
 import pkg from 'graphql';
-import { UserType } from '../graphQL/types.js'
+import { UserType, ToDoType } from '../graphQL/types.js'
+import ToDo from '../models/ToDoModel.js';
 import user from '../models/userModel.js';
 const { GraphQLList, GraphQLID } = pkg;
 
@@ -20,3 +21,21 @@ export const User = {
     },
 }
 
+export const toDos = {
+    type: new GraphQLList(ToDoType),
+    description: 'Retrieve all To-do items',
+    resolve() {
+        return ToDo.find()
+    },
+}
+
+export const toDo = {
+    type: ToDoType,
+    description: 'Retrive a single To-do',
+    args: {
+        id: { type: GraphQLID } },
+    resolve (_, args) {
+        return ToDo.findById(args.id)
+    },
+
+}

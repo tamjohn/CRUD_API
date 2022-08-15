@@ -61,3 +61,41 @@ export const addToDo = {
         return toDo.save()
     },
 }
+
+export const updateToDo = {
+    type: ToDoType,
+    description: "Update a To-do item",
+    args: {
+        id: { type: GraphQLString },
+        ToDo: { type: GraphQLString },
+        active: {type: GraphQLBoolean},
+        priority: {type: GraphQLString},
+    },
+    async resolve(parent, args, { verifiedUser }) {
+        if (!verifiedUser) {
+            throw new Error("Not Authorized to update this To-do item")
+        }
+
+        const toDoUpdate = await ToDo.findOneAndUpdate(
+            {
+                _id: args.id,
+                userID: verifiedUser._id,
+            },
+            {
+                ToDo: args.ToDo,
+                active: args.active,
+                priority: args.priority,
+            },
+            {
+                new: true,
+                runValidators: true,
+            }
+        )
+
+        if(!toDoUpdate) {
+            throw new Error ("No To-do with the given ID was found for this user")
+        }
+
+        return toDoUpdate
+    },
+}
