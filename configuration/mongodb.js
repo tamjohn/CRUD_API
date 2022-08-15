@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const connectMongoDB = async() => {
+export const connectMongoDB = async() => {
     try {
         const connect = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
@@ -12,5 +12,3 @@ const connectMongoDB = async() => {
         process.exit(1)
     }
 }
-
-export default connectMongoDB;

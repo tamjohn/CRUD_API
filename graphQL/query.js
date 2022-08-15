@@ -5,7 +5,7 @@ import { user } from '../models/userModel.js';
 
 export const users = { 
     type: new GraphQLList(UserType),
-    description: 'Retrive a list of all users',
+    description: 'Retrieve a list of all users',
     resolve(parent, args) {
         return user.find()
     }
@@ -13,7 +13,7 @@ export const users = {
 
 export const User = {
     type: UserType,
-    description: 'Retrives one user',
+    description: 'Retrieves one user',
     args: { id: { type: GraphQLID }},
     resolve (parent, args) {
         return user.findById(args.id)
@@ -30,7 +30,7 @@ export const toDos = {
 
 export const toDo = {
     type: ToDoType,
-    description: 'Retrive a single To-do',
+    description: 'Retrieve a single To-do',
     args: {
         id: { type: GraphQLID } },
     resolve (_, args) {
