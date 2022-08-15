@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const createLoginToken = user => {
-    return jwt.sign(user, "123454", {
-        expiresIn: "30 days",
+export const createLoginToken = (user) => {
+    return jwt.sign(user, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
     })
 }
-
-export default createLoginToken;
