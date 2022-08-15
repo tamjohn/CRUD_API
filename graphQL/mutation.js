@@ -1,6 +1,8 @@
-import { GraphQLString } from 'graphql';
+import { GraphQLBoolean, GraphQLString } from 'graphql';
+import ToDo from '../models/ToDoModel.js';
 import user from '../models/userModel.js';
 import { createLoginToken } from '../util/authorization.js';
+import { ToDoType } from './types.js';
 
 
 export const registerUser = {
@@ -21,6 +23,7 @@ export const registerUser = {
 
 export const loginUser = {
     type: GraphQLString,
+    description: "User login",
     args: {
         username: { type: GraphQLString },
         password: { type: GraphQLString },
@@ -35,4 +38,26 @@ export const loginUser = {
     },
 }
 
+export const addToDo = {
+    type: ToDoType,
+    description: "Create a new ToDo",
+    args: {
+        ToDo: {type: GraphQLString},
+        active: {type: GraphQLBoolean},
+        priority: {type: GraphQLString},
+    },
+    resolve (parent, args, { verifiedUser }) {
+        if (!verifiedUser) {
+            throw new Error("Not Authorized to add a To-do")
+        }
 
+        const toDo = new ToDo ({
+            userID: verifiedUser._id,
+            ToDo: args.ToDo,
+            active: args.active,
+            priority: args.priority,
+        })
+
+        return toDo.save()
+    },
+}
