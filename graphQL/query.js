@@ -1,8 +1,7 @@
-import pkg from 'graphql';
+import { GraphQLList, GraphQLID } from 'graphql';
 import { UserType, ToDoType } from '../graphQL/types.js'
-import ToDo from '../models/ToDoModel.js';
-import user from '../models/userModel.js';
-const { GraphQLList, GraphQLID } = pkg;
+import { ToDo } from '../models/ToDoModel.js';
+import { user } from '../models/userModel.js';
 
 export const users = { 
     type: new GraphQLList(UserType),

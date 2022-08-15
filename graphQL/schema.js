@@ -1,5 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
-import { registerUser, loginUser, addToDo, updateToDo } from "./mutation.js";
+import { registerUser, loginUser, addToDo, updateToDo, deleteToDo } from "./mutation.js";
 import { users, User, toDos, toDo } from './query.js'
 
 const QueryType = new GraphQLObjectType ({
@@ -11,12 +11,11 @@ const QueryType = new GraphQLObjectType ({
 const MutationType = new GraphQLObjectType ({
     name: "MutationType",
     description: "Mutations",
-    fields: { registerUser, loginUser, addToDo, updateToDo },
+    fields: { registerUser, loginUser, addToDo, updateToDo, deleteToDo },
 })
 
-const schema = new GraphQLSchema ({
+export const schema = new GraphQLSchema ({
     query: QueryType,
     mutation: MutationType,
 })
 
-export default schema;

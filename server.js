@@ -1,10 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
-import * as path from 'path';
 import connectMongoDB from './configuration/mongodb.js';
 import { graphqlHTTP } from 'express-graphql';
-import schema from './graphQL/schema.js';
+import { schema } from './graphQL/schema.js';
 import { authentification } from './middleware/auth.js';
 
 

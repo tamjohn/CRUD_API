@@ -1,5 +1,5 @@
 PORT = 8000
 MODE = development
-MONGO_URL = mongodb+srv://admin_John:testpassword@todolistdatabase.ayfjtdh.mongodb.net/?retryWrites=true&w=majority
+MONGO_URI = mongodb+srv://admin_John:testpassword@todolistdatabase.ayfjtdh.mongodb.net/?retryWrites=true&w=majority
 JWT_SECRET = 0526
 JWT_EXPIRES_IN = "14 days"

@@ -1,6 +1,6 @@
 import { GraphQLBoolean, GraphQLString } from 'graphql';
-import ToDo from '../models/ToDoModel.js';
-import user from '../models/userModel.js';
+import { ToDo } from '../models/ToDoModel.js';
+import { user } from '../models/userModel.js';
 import { createLoginToken } from '../util/authorization.js';
 import { ToDoType } from './types.js';
 
@@ -93,9 +93,34 @@ export const updateToDo = {
         )
 
         if(!toDoUpdate) {
-            throw new Error ("No To-do with the given ID was found for this user")
+            throw new Error ("No To-do item with the given ID was found for this user")
         }
 
         return toDoUpdate
+    },
+}
+
+export const deleteToDo = {
+    type: GraphQLString,
+    description: "Delete a To-do item",
+    args: {
+        ToDoId: { type: GraphQLString },
+    },
+
+    async resolve (parent, args, { verifiedUser }) {
+        if (!verifiedUser) {
+            throw new error("Not authorized to delete this To-do item")
+        }
+
+        const toDoDelete = await ToDo.findOneAndDelete({
+            _id: args.ToDoId,
+            userID: verifiedUser._id,
+        })
+
+        if (!toDoDelete) {
+            throw new Error("No To-do item with the igven ID was found for this user")
+        }
+
+        return "To-do item deleted"
     },
 }

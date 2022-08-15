@@ -1,6 +1,5 @@
 import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean } from 'graphql';
-import user from '../models/userModel.js';
-import ToDo from '../models/ToDoModel.js';
+import { user } from '../models/userModel.js';
 
 export const UserType = new GraphQLObjectType ({
     name: "User",
