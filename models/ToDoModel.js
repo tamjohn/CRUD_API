@@ -13,6 +13,10 @@ const toDoModel = new mongoose.Schema(
     priority: {
         type: String,
         required: true
+    },
+    userID: {
+        type: String,
+        required: true
     }
 });
 

@@ -8,5 +8,22 @@ const UserType = new GraphQLObjectType ({
     fields: () => ({
         id: { type: GraphQLID },
         username: { type: GraphQLString },
-    })
+    }),
+})
+
+const ToDoType = new GraphQLObjectType ({
+    name: "ToDo",
+    description: "ToDo type",
+    fields: () => ({
+        id: { type: GraphQLID },
+        ToDo: { type: GraphQLString },
+        active: { type: GraphQLBoolean },
+        priority: { type: GraphQLString },
+        userID: {
+            type: GraphQLString,
+            resolve(parent, args) {
+                return user.findById(parent.userID)
+            },
+        },
+    }),
 })
